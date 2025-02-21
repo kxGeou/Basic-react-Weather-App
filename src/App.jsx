@@ -1,29 +1,22 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react"
 
 function App() {
-  const [counter, setCounter] = useState(0)
-  function addButtonHandle() {
-    setCounter(counter + 1)
-  }
+  const [Text, setText] = useState("");
+  const [Error, setError] = useState("");
 
-  function decreaseButtonHandle() {
-      setCounter(counter - 1)
-  }
 
-  function resetCounter() {
-    setCounter(counter - counter)
+  const handleDateChange = (e) => {
+    const number = e.target.value
+    fetch(`http://numbersapi.com/${number}/year?json`)
+      .then(res => res.json())
+      .then(data => setText(data.text))
+      .catch(err => console.log(err))
   }
 
   return (
-    <div className='text-white bg-[#343635] h-[100vh] flex flex-col justify-center items-center'>
-      <h2 className='text-2xl opacity-60 mb-5'>Counter</h2>
-      <p className='text-4xl'>{counter} </p>
-      <div className='flex gap-5 mt-6'>
-        <button className='flex justify-center items-center bg-[#8c1827] h-[2rem] w-[4rem] rounded-md' onClick={decreaseButtonHandle}>-</button>
-        <button className='flex justify-center items-center bg-[#184c8c] h-[2rem] w-[4rem] rounded-md' onClick={resetCounter}>Reset</button>
-        <button className='flex justify-center items-center bg-[#188c1c] h-[2rem] w-[4rem] rounded-md' onClick={addButtonHandle}>+</button>
-      </div>
+    <div className=' bg-[#343635] h-[100vh] flex flex-col justify-center items-center'>
+      <input type="text" className="px-4 py-2" onChange={handleDateChange}/>
+      <p className="text-white mt-12">Odpowiedź: {Text}</p>
     </div>
   )
 }
