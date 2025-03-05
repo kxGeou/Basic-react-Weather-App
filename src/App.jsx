@@ -55,7 +55,6 @@ function App() {
                   <p className="text-[#e0dfe8]/75 text-2xl mb-4">Weather: {weatherData.weather}</p>
                   <div className="flex gap-2 items-center">
                   <Thermometer color="#e0dfe8"/>
-                  <Thermometer color="#e0dfe8"/>
                   <p className="text-[#e0dfe8]/75 text-2xl"> {weatherData.temperature} °C</p>
                   </div>
                   <div className="flex gap-2 items-center">
